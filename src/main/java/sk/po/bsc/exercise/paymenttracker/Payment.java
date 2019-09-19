@@ -1,14 +1,16 @@
 package sk.po.bsc.exercise.paymenttracker;
 
+import java.math.BigDecimal;
+
 /**
  * @author Marek Krištof
  */
 public class Payment {
 
     private ECurrencyCode currency;
-    private long amount;
+    private BigDecimal    amount;
 
-    public Payment(ECurrencyCode currency, long amount) {
+    public Payment(ECurrencyCode currency, BigDecimal amount) {
         this.currency = currency;
         this.amount = amount;
     }
@@ -21,11 +23,19 @@ public class Payment {
         this.currency = currency;
     }
 
-    public long getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "currency=" + currency +
+                ", amount=" + amount +
+                '}';
     }
 }

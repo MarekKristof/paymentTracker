@@ -6,7 +6,8 @@ package sk.po.bsc.exercise.paymenttracker;
 public enum ECurrencyCode {
     EUR(1, "EUR", 1.2),
     USD(2, "USD", 1.0),
-    RMB(3 ,"RMB", 0.8);
+    RMB(3 ,"RMB", 0.8),
+    HKD(3 ,"HKD", 0.8);
 
     private final int    index;
     private final String name;
@@ -22,7 +23,7 @@ public enum ECurrencyCode {
         return index;
     }
 
-    public String getName() {
+    public  String getName() {
         return name;
     }
 

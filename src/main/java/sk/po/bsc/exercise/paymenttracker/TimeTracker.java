@@ -10,12 +10,13 @@ import java.util.TimerTask;
 public class TimeTracker extends Observable {
 
     private Timer timer;
-    public TimeTracker(){
+
+    public TimeTracker() {
         timer = new Timer();
     }
 
 
-    public void schedule(long seconds){
+    public void schedule(long seconds) {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -26,7 +27,7 @@ public class TimeTracker extends Observable {
 
     }
 
-    public void stop(){
+    public void stop() {
         timer.cancel();
     }
 }

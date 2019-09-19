@@ -1,7 +1,7 @@
 package sk.po.bsc.exercise;
 
 import sk.po.bsc.exercise.paymenttracker.CommandReader;
-import sk.po.bsc.exercise.paymenttracker.PaymentTracker;
+import sk.po.bsc.exercise.paymenttracker.InputCommandTracker;
 import sk.po.bsc.exercise.paymenttracker.TimeTracker;
 
 /**
@@ -9,18 +9,16 @@ import sk.po.bsc.exercise.paymenttracker.TimeTracker;
  */
 public class App {
     public static void main(String[] args) {
-        PaymentTracker paymentTracker = new PaymentTracker();
-        TimeTracker    timeTracker    = new TimeTracker();
-
-        paymentTracker.readFileWithPayments();
+        InputCommandTracker inputCommandTracker = new InputCommandTracker();
+        TimeTracker         timeTracker    = new TimeTracker();
 
         CommandReader commandReader = new CommandReader();
 
-        paymentTracker.addObserver(commandReader);
+        inputCommandTracker.addObserver(commandReader);
         timeTracker.addObserver(commandReader);
 
         timeTracker.schedule(60);
-        paymentTracker.createMainLoop();
+        inputCommandTracker.createMainLoop();
     }
 }
 
