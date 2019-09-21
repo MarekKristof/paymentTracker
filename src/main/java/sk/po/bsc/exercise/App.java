@@ -1,8 +1,8 @@
 package sk.po.bsc.exercise;
 
 import sk.po.bsc.exercise.paymenttracker.CommandReader;
-import sk.po.bsc.exercise.paymenttracker.InputCommandTracker;
-import sk.po.bsc.exercise.paymenttracker.TimeTracker;
+import sk.po.bsc.exercise.paymenttracker.trackers.InputCommandTracker;
+import sk.po.bsc.exercise.paymenttracker.trackers.TimeTracker;
 
 /**
  * @author Marek Krištof

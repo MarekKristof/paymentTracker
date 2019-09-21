@@ -1,4 +1,6 @@
-package sk.po.bsc.exercise.paymenttracker;
+package sk.po.bsc.exercise.paymenttracker.trackers;
+
+import sk.po.bsc.exercise.paymenttracker.definitions.Commands;
 
 import java.util.Observable;
 import java.util.Timer;
@@ -15,13 +17,12 @@ public class TimeTracker extends Observable {
         timer = new Timer();
     }
 
-
     public void schedule(long seconds) {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 setChanged();
-                notifyObservers("TIME");
+                notifyObservers(Commands.TIME_COMMAND);
             }
         }, 0, seconds * 1000);
 

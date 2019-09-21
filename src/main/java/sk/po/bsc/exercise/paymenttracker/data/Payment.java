@@ -1,4 +1,6 @@
-package sk.po.bsc.exercise.paymenttracker;
+package sk.po.bsc.exercise.paymenttracker.data;
+
+import sk.po.bsc.exercise.paymenttracker.definitions.ECurrencyCode;
 
 import java.math.BigDecimal;
 
