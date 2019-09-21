@@ -1,6 +1,5 @@
 package sk.po.bsc.exercise.paymenttracker;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import sk.po.bsc.exercise.paymenttracker.data.Payment;
 import sk.po.bsc.exercise.paymenttracker.definitions.Commands;
 import sk.po.bsc.exercise.paymenttracker.definitions.ECurrencyCode;
@@ -12,6 +11,7 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static sk.po.bsc.exercise.paymenttracker.definitions.Commands.*;
 import static sk.po.bsc.exercise.paymenttracker.definitions.Messages.*;
 import static sk.po.bsc.exercise.paymenttracker.utils.ValidationUtils.isCurrencyKnown;
 
@@ -30,10 +30,11 @@ public class CommandReader implements Observer {
         String command = (String) arg;
 
         switch (command) {
-            case Commands.TIME_COMMAND:
+            case TIME_COMMAND:
+            case PRINTOUT_COMMAND:
                 printStateOfAccount();
                 break;
-            case Commands.QUIT_COMMAND:
+            case QUIT_COMMAND:
                 quitProgram();
                 break;
             default:
@@ -66,7 +67,7 @@ public class CommandReader implements Observer {
 
     private void addPayment(String command) {
         String     currency       = command.substring(0, 3);
-        String     ammountOfMoney = command.substring(4, command.length() - 1).replaceAll(",", "");
+        String     ammountOfMoney = command.substring(4, command.length() - 1);
         BigDecimal bd             = new BigDecimal(ammountOfMoney);
 
         if (isCurrencyKnown(currency)) {
@@ -79,6 +80,7 @@ public class CommandReader implements Observer {
     }
 
     private void quitProgram() {
+
     }
 
 }

@@ -19,10 +19,8 @@ public class InputCommandTracker extends Observable {
     public void createMainLoop() {
         Runnable commandHandlingTask = () ->
         {
-            try (Scanner scanner = new Scanner(System.in))
-            {
-                while (true)
-                {
+            try (Scanner scanner = new Scanner(System.in)) {
+                while (true) {
                     String command = scanner.nextLine();
                     handleCommand(command);
                 }
@@ -31,13 +29,15 @@ public class InputCommandTracker extends Observable {
         new Thread(commandHandlingTask).start();
     }
 
-    private void handleCommand(String command){
-        String inputCommand = command.trim();
-        if (ValidationUtils.isPaymentValid(inputCommand)) {
-            setChanged();
-            notifyObservers(inputCommand);
-        } else {
-            System.out.println(MSG_PAYMENT_IS_NOT_VALID + " " + inputCommand);
+    private void handleCommand(String command) {
+        if (command != null) {
+            String inputCommand = command.trim();
+            if (ValidationUtils.isPaymentValid(inputCommand) || ValidationUtils.isCommandKnown(command)) {
+                setChanged();
+                notifyObservers(inputCommand);
+            } else {
+                System.out.println(MSG_PAYMENT_IS_NOT_VALID + " " + inputCommand);
+            }
         }
     }
 
