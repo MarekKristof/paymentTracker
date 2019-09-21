@@ -6,14 +6,21 @@ package sk.po.bsc.exercise.paymenttracker.definitions;
  */
 public class Messages {
 
-    private Messages() {}
+    private Messages() {
+    }
 
-    public static final String MSG_FILE_NOT_FOUND           = "Súbor nebol nájdený. Potvrďte vytvorenie nového súboru:";
-    public static final String MSG_YES                      = "Áno";
-    public static final String MSG_NIE                      = "Nie";
-    public static final String MSG_ALL_PAYMENTS             = "Všetky platby:";
-    public static final String MSG_PAYMENTS_CALCULATION     = "Súhrn platieb:";
-    public static final String MSG_PAYMENTS_CALCULATION_USD = "Súhrn platieb v USD:";
-    public static final String MSG_PAYMENT_IS_NOT_VALID     = "Invalid payment: ";
+    public static final String NEW_LINE   = "\n";
+    public static final String LINE_BREAK = "-------------------------------------------------------------";
+
+    public static final String MSG_FILE_NOT_FOUND                     = "File was not found. Please confirm creation of new file:";
+    public static final String MSG_YES                                = "YES";
+    public static final String MSG_NIE                                = "NO";
+    public static final String MSG_AVAILABLE_CURRENCIES               = "Available currencies: ";
+    public static final String MSG_YOUR_PAYMENT_WAS_SUCCESFULLY_ADDED = "Your payment was succesfully added";
+    public static final String MSG_CURRENCY_IS_NOT_VALID              = "Invalid currency: ";
+    public static final String MSG_PAYMENT_IS_NOT_VALID               = "Unknown command: ";
+    public static final String MSG_PAYMENTS_INPUT                     = "All payments:";
+    public static final String MSG_PAYMENTS_OUTPUT                    = "Payments summarization:";
+    public static final String MSG_PAYMENTS_OUTPUT_USD                = "Payments summarization in USD:";
 
 }

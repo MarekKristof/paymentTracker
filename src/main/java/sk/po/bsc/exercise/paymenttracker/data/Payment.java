@@ -35,9 +35,6 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "Payment{" +
-                "currency=" + currency +
-                ", amount=" + amount +
-                '}';
+        return currency.getName() + " " + amount;
     }
 }
