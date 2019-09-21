@@ -21,7 +21,7 @@ public enum PaymentListFileReader {
     public static List<Payment> readFileWithPayments() {
         List<Payment> payments = new ArrayList<Payment>();
 
-
+        BufferedReader br = null;
         // File file = new File(PAYMENTS_FILE);
         // if (file.exists() && !file.isDirectory()) {
         try {
@@ -29,7 +29,7 @@ public enum PaymentListFileReader {
 
             ClassLoader classLoader = PaymentListFileReader.class.getClassLoader();
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream(PAYMENTS_FILE)));
+            br = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream(PAYMENTS_FILE)));
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -39,9 +39,17 @@ public enum PaymentListFileReader {
                     System.out.println(Messages.MSG_PAYMENT_IS_NOT_VALID);
                 }
             }
-
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         //  } else {
         //     System.out.println("Súbor " + PAYMENTS_FILE + " nebol nájdený.");

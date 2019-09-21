@@ -4,6 +4,7 @@ import sk.po.bsc.exercise.paymenttracker.data.Payment;
 import sk.po.bsc.exercise.paymenttracker.definitions.Commands;
 import sk.po.bsc.exercise.paymenttracker.definitions.ECurrencyCode;
 import sk.po.bsc.exercise.paymenttracker.definitions.Messages;
+import sk.po.bsc.exercise.paymenttracker.trackers.TimeTracker;
 import sk.po.bsc.exercise.paymenttracker.utils.PaymentCalculator;
 
 import java.math.BigDecimal;
@@ -35,7 +36,7 @@ public class CommandReader implements Observer {
                 printStateOfAccount();
                 break;
             case QUIT_COMMAND:
-                quitProgram();
+                quitProgram(o);
                 break;
             default:
                 addPayment(command);
@@ -79,8 +80,12 @@ public class CommandReader implements Observer {
         }
     }
 
-    private void quitProgram() {
-
+    private void quitProgram(java.util.Observable o) {
+        if (o instanceof TimeTracker) {
+            ((TimeTracker) o).stop();
+        }
+        o.deleteObservers();
+        System.exit(0);
     }
 
 }
