@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static sk.po.bsc.exercise.paymenttracker.definitions.Messages.MSG_LOAD_DATA_PROBLEM;
+
 /**
  * @author Marek Krištof
  */
@@ -22,29 +24,31 @@ public enum PaymentListFileReader {
         List<Payment> payments = new ArrayList<Payment>();
 
         BufferedReader br = null;
-        //  File           file = new File(PAYMENTS_FILE);
-        //  if (!file.exists() && file.isDirectory()) {
+
         try {
 
             ClassLoader classLoader = PaymentListFileReader.class.getClassLoader();
 
-            br = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream(PAYMENTS_FILE)));
+            InputStream resourceAsStream = classLoader.getResourceAsStream(PAYMENTS_FILE);
+            if (resourceAsStream != null) {
+                br = new BufferedReader(new InputStreamReader(resourceAsStream));
 
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (ValidationUtils.isPaymentValid(line)) {
-                    payments.add(new Payment(getECurencyCode(line.substring(0, 3)), new BigDecimal(line.substring(4))));
-                } else {
-                    System.out.println(Messages.MSG_PAYMENT_IS_NOT_VALID);
+                String line;
+                while ((line = br.readLine()) != null) {
+                    if (ValidationUtils.isPaymentValid(line)) {
+                        payments.add(new Payment(getECurencyCode(line.substring(0, 3)), new BigDecimal(line.substring(4))));
+                    } else {
+                        System.out.println(Messages.MSG_PAYMENT_IS_NOT_VALID);
+                    }
                 }
+                br.close();
+            } else {
+                System.out.println(MSG_LOAD_DATA_PROBLEM + " " + PAYMENTS_FILE);
             }
-            br.close();
+
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(MSG_LOAD_DATA_PROBLEM + " " + PAYMENTS_FILE);
         }
-        // } else {
-        //      System.out.println("File " + PAYMENTS_FILE + " was not found.");
-        // }
         return payments;
     }
 
