@@ -1,7 +1,6 @@
 package sk.po.bsc.exercise.paymenttracker;
 
 import sk.po.bsc.exercise.paymenttracker.data.Payment;
-import sk.po.bsc.exercise.paymenttracker.definitions.Commands;
 import sk.po.bsc.exercise.paymenttracker.definitions.ECurrencyCode;
 import sk.po.bsc.exercise.paymenttracker.definitions.Messages;
 import sk.po.bsc.exercise.paymenttracker.trackers.TimeTracker;
@@ -51,11 +50,17 @@ public class CommandReader implements Observer {
         combineListsOfPayments(payments, addedPayments).forEach(System.out::println);
 
         System.out.println(NEW_LINE + Messages.MSG_PAYMENTS_OUTPUT);
-        calculatedPayments.forEach((k, v) -> System.out.println(k + " " + v));
+        calculatedPayments.forEach((k, v) -> {
+            if (v.compareTo(BigDecimal.ZERO) != 0)
+                System.out.println(k + " " + v);
+        });
 
         System.out.println(NEW_LINE + Messages.MSG_PAYMENTS_OUTPUT_USD);
-        calculatedPayments.forEach((k, v) -> System.out.println(k + " " + v + "(USD " +
-                v.multiply(new BigDecimal(k.getExchangeRate())).setScale(2, RoundingMode.HALF_UP) + ")"));
+        calculatedPayments.forEach((k, v) -> {
+            if (v.compareTo(BigDecimal.ZERO) != 0)
+                System.out.println(k + " " + v + "(USD " +
+                        v.multiply(new BigDecimal(k.getExchangeRate())).setScale(2, RoundingMode.HALF_UP) + ")");
+        });
 
         System.out.println(LINE_BREAK);
     }
@@ -68,7 +73,7 @@ public class CommandReader implements Observer {
 
     private void addPayment(String command) {
         String     currency       = command.substring(0, 3);
-        String     ammountOfMoney = command.substring(4, command.length() - 1);
+        String     ammountOfMoney = command.substring(4);
         BigDecimal bd             = new BigDecimal(ammountOfMoney);
 
         if (isCurrencyKnown(currency)) {

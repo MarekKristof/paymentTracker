@@ -4,10 +4,11 @@ package sk.po.bsc.exercise.paymenttracker.definitions;
  * @author Marek Krištof
  */
 public enum ECurrencyCode {
-    EUR(1, "EUR", 1.29),
+    EUR(1, "EUR", 1.10),
     USD(2, "USD", 1.00),
-    RMB(3 ,"RMB", 0.83),
-    HKD(3 ,"HKD", 0.82);
+    GBP(3 ,"GBP", 1.24),
+    RMB(4 ,"RMB", 0.14),
+    HKD(5 ,"HKD", 0.12);
 
     private final int    index;
     private final String name;

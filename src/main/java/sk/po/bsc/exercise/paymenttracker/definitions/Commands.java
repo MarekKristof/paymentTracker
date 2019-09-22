@@ -1,7 +1,6 @@
 package sk.po.bsc.exercise.paymenttracker.definitions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

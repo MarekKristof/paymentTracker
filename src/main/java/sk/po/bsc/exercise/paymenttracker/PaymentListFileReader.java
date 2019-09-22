@@ -22,10 +22,9 @@ public enum PaymentListFileReader {
         List<Payment> payments = new ArrayList<Payment>();
 
         BufferedReader br = null;
-        // File file = new File(PAYMENTS_FILE);
-        // if (file.exists() && !file.isDirectory()) {
+        //  File           file = new File(PAYMENTS_FILE);
+        //  if (!file.exists() && file.isDirectory()) {
         try {
-            // FileReader fr = new FileReader(file);
 
             ClassLoader classLoader = PaymentListFileReader.class.getClassLoader();
 
@@ -34,7 +33,7 @@ public enum PaymentListFileReader {
             String line;
             while ((line = br.readLine()) != null) {
                 if (ValidationUtils.isPaymentValid(line)) {
-                    payments.add(new Payment(getECurencyCode(line.substring(0, 3)), new BigDecimal(line.substring(4, line.length() - 1))));
+                    payments.add(new Payment(getECurencyCode(line.substring(0, 3)), new BigDecimal(line.substring(4))));
                 } else {
                     System.out.println(Messages.MSG_PAYMENT_IS_NOT_VALID);
                 }
@@ -42,24 +41,15 @@ public enum PaymentListFileReader {
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
-        //  } else {
-        //     System.out.println("Súbor " + PAYMENTS_FILE + " nebol nájdený.");
-        //}
+        // } else {
+        //      System.out.println("File " + PAYMENTS_FILE + " was not found.");
+        // }
         return payments;
     }
 
     private static ECurrencyCode getECurencyCode(String line) {
         return ECurrencyCode.valueOf(line.trim());
-        //TODO NEZNAMA MENA
     }
 
 }

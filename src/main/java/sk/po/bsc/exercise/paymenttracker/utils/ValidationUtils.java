@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class ValidationUtils {
 
-    private static final Pattern PAYMENT_PATTERN = Pattern.compile("([A-Z]{3}) (-?\\d+(?:[.]\\d{2})?)");
+    private static final Pattern PAYMENT_PATTERN = Pattern.compile("([A-Z]{3}) (-?\\d+(?:[.]\\d{0,2})?)");
 
     private ValidationUtils() {
     }
@@ -26,6 +26,6 @@ public class ValidationUtils {
     }
 
     public static boolean isCommandKnown(String command) {
-        return Commands.getCommands().contains(command);// Stream.of(Commands.getCommands()).map(command ->Commands::getCommands).collect(Collectors.toSet()).contains(command);
+        return Commands.getCommands().contains(command);
     }
 }
