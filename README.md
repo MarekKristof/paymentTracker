@@ -6,7 +6,7 @@ Each payment includes a currency and an amount.
 The program output a list of all the currency and amounts to the console once per minute.
 The input can be typed into the command line and also be loaded from a file when starting up.
 
-###Assumptions
+### Assumptions
 1. Program starts with print out the all payments and sum of payments (loaded from file).
 2. File is saved in resource directory. File name is "Payments.txt".
 3. If file is broken or missing, program notify user and continue without payments from file.
@@ -24,11 +24,11 @@ The input can be typed into the command line and also be loaded from a file when
 15. If the net amount is 0, that currency isn't be displayed. 
 
 
-###Run the program
+### Run the program
 - run the ain method in App
 - run the command: mvn package exec:java
 
-###Sample<br/>
+### Sample<br/>
 All payments:<br/>
 USD 100<br/>
 HKD 100<br/>
