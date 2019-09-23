@@ -14,6 +14,12 @@ import java.util.stream.Collectors;
 public enum PaymentCalculator {
     INSTANCE;
 
+    /**
+     * This method calculate all payments and return summarization of them.
+     *
+     * @param listOfAllPayments represents lis of all payments. Including payments from file and payments from memory.
+     * @return Map<ECurrencyCode, BigDecimal> represents map, where key is currency and value is amount of money.
+     */
     public static Map<ECurrencyCode, BigDecimal> doCalculation(List<Payment> listOfAllPayments) {
         Map<ECurrencyCode, BigDecimal> groupedPayments = listOfAllPayments.stream()
                 .collect(Collectors.groupingBy(Payment::getCurrency,

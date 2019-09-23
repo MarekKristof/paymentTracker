@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * @author Marek Krištof
- * Created: 21-Sep-19
  */
 public class Commands {
 
@@ -22,7 +21,9 @@ public class Commands {
         commands.add(PRINTOUT_COMMAND);
     }
 
-
+    /**
+     * @return List<String> of available commands.
+     */
     public static List<String> getCommands() {
         return commands;
     }

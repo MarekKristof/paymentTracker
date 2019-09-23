@@ -20,6 +20,11 @@ public enum PaymentListFileReader {
 
     private static final String PAYMENTS_FILE = "Payments.txt";
 
+    /**
+     * This program is used for read payments from file.
+     *
+     * @return list of payments from file.
+     */
     public static List<Payment> readFileWithPayments() {
         List<Payment> payments = new ArrayList<Payment>();
 
@@ -52,8 +57,14 @@ public enum PaymentListFileReader {
         return payments;
     }
 
-    private static ECurrencyCode getECurencyCode(String line) {
-        return ECurrencyCode.valueOf(line.trim());
+    /**
+     * This method is used for returning ECurrencyCde value by input commandFromCode.
+     *
+     * @param commandForCode represents command in String format from input for currency.
+     * @return ECurrency value.
+     */
+    private static ECurrencyCode getECurencyCode(String commandForCode) {
+        return ECurrencyCode.valueOf(commandForCode.trim());
     }
 
 }

@@ -17,6 +17,11 @@ public class TimeTracker extends Observable {
         timer = new Timer();
     }
 
+    /**
+     * This method is used for schedule one minute loop. Program after one minute notify observer.
+     *
+     * @param seconds represents amount of seconds for one interval.
+     */
     public void schedule(long seconds) {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -28,6 +33,9 @@ public class TimeTracker extends Observable {
 
     }
 
+    /**
+     * This method is used to stop the timer.
+     */
     public void stop() {
         timer.cancel();
     }

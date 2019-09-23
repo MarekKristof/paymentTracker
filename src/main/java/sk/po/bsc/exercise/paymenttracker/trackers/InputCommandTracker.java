@@ -16,6 +16,9 @@ public class InputCommandTracker extends Observable {
     public InputCommandTracker() {
     }
 
+    /**
+     * This method is used for creating main loop, which will handle input command.
+     */
     public void createMainLoop() {
         Runnable commandHandlingTask = () ->
         {
@@ -29,6 +32,12 @@ public class InputCommandTracker extends Observable {
         new Thread(commandHandlingTask).start();
     }
 
+    /**
+     * This method handle command, and validate if command is valid payment or known command.
+     * After successful validation, it will notify observer.
+     *
+     * @param command represents command to handle.
+     */
     private void handleCommand(String command) {
         if (command != null) {
             String inputCommand = command.trim();
