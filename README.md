@@ -25,7 +25,7 @@ The input can be typed into the command line and also be loaded from a file when
 
 
 ### Run the program
-- run the ain method in App
+- run the main method in App
 - run the command: mvn package exec:java
 
 ### Sample<br/>
